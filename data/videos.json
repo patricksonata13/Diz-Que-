@@ -1,0 +1,16 @@
+{
+  "proximoId": 3,
+  "videos": [
+    {
+      "id": 1,
+      "titulo": "A Rua da Saudade",
+      "descricao": "Novela ambientada no Rio antigo",
+      "autor": "Anônimo",
+      "capitulos": [
+        { "id": 1, "titulo": "Capítulo 1", "url": "/videos/exemplo1.mp4", "likes": 0, "views": 0 },
+        { "id": 2, "titulo": "Capítulo 2", "url": "/videos/exemplo2.mp4", "likes": 0, "views": 0 }
+      ],
+      "dataCriacao": "2025-10-09T00:00:00.000Z"
+    }
+  ]
+}
