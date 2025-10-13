@@ -1,0 +1,38 @@
+{
+<<<<<<< HEAD
+  "name": "diz-que",
+  "version": "1.0.0",
+  "description": "Plataforma de micro-novelas verticais estilo fofoca carioca",
+=======
+  "name": "microframas",
+  "version": "1.0.0",
+  "description": "Plataforma de minisséries e novelinhas verticais inspirada em Reels/Shorts",
+>>>>>>> db8873719cbf95a64184c708abfa37f7785d6d34
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+<<<<<<< HEAD
+    "dev": "nodemon server.js",
+    "test": "echo 'Diz Que rodando!'"
+  },
+  "keywords": [
+    "novelas",
+    "vertical",
+    "rio",
+    "microframas"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+=======
+    "dev": "nodemon server.js"
+  },
+>>>>>>> db8873719cbf95a64184c708abfa37f7785d6d34
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

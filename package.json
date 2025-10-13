@@ -1,0 +1,21 @@
+{
+  "name": "diz-que-app",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Plataforma de novelinhas verticais",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0"
+  },
+  "keywords": ["novelas", "plataforma", "rio-de-janeiro"],
+  "author": "patricksonata13",
+  "license": "MIT"
+}
+git add .
+git commit -m "Remover tokens expostos"
+git push -u origin main --force
+

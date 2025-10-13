@@ -1,0 +1,112 @@
+{
+  "proximoId": 10,
+  "videos": [
+    {
+      "id": 1,
+      "titulo": "O Matuto",
+      "descricao": "Diego, criado na Cidade de Deus, consegue se mudar para a Freguesia com sua família, mas descobre que o passado não fica para trás.",
+      "autor": "Anônimo",
+      "categoria": "Drama Urbano",
+      "capa": "/images/capas/capa1.jpg",
+      "localizacao": {
+        "bairro": "Cidade de Deus/Freguesia",
+        "pontoTuristico": ""
+      },
+      "capitulos": [
+        {
+          "id": 1,
+          "titulo": "Novo Começo",
+          "url": "/videos/o_matuto/episodio1.mp4",
+          "likes": 0,
+          "views": 0
+        },
+        {
+          "id": 2,
+          "titulo": "Fantamas do Passado",
+          "url": "/videos/o_matuto/episodio2.mp4",
+          "likes": 0,
+          "views": 0
+        }
+      ],
+      "likes": 0,
+      "views": 0,
+      "dataCriacao": "2024-10-10T00:00:00.000Z",
+      "dataAtualizacao": "2024-10-10T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "titulo": "Viaduto",
+      "descricao": "Três amigos descobrem um portal temporal no Viaduto de Madureira que os transporta para o período da escravidão.",
+      "autor": "Anônimo",
+      "categoria": "Ficção Histórica",
+      "capa": "/images/capas/capa2.jpg",
+      "localizacao": {
+        "bairro": "Madureira",
+        "pontoTuristico": "Viaduto de Madureira"
+      },
+      "capitulos": [
+        {
+          "id": 1,
+          "titulo": "O Portal",
+          "url": "/videos/viaduto/episodio1.mp4",
+          "likes": 0,
+          "views": 0
+        }
+      ],
+      "likes": 0,
+      "views": 0,
+      "dataCriacao": "2024-10-10T00:00:00.000Z",
+      "dataAtualizacao": "2024-10-10T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "titulo": "Um Verão em Arraial",
+      "descricao": "Cinco amigos vivem um verão transformador em Arraial do Cabo, entre romances e aventuras.",
+      "autor": "Anônimo",
+      "categoria": "Comédia Romântica",
+      "capa": "/images/capas/capa3.jpg",
+      "localizacao": {
+        "bairro": "Arraial do Cabo",
+        "pontoTuristico": "Praia do Pontal"
+      },
+      "capitulos": [
+        {
+          "id": 1,
+          "titulo": "Chegada",
+          "url": "/videos/um_verao_arraial/episodio1.mp4",
+          "likes": 0,
+          "views": 0
+        }
+      ],
+      "likes": 0,
+      "views": 0,
+      "dataCriacao": "2024-10-10T00:00:00.000Z",
+      "dataAtualizacao": "2024-10-10T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "titulo": "Teu Samba",
+      "descricao": "Casais se encontram e se desencontram nas rodas de samba do Rio, da Zona Norte ao Centro.",
+      "autor": "Anônimo",
+      "categoria": "Romance Musical",
+      "capa": "/images/capas/capa4.jpg",
+      "localizacao": {
+        "bairro": "Vários",
+        "pontoTuristico": "Rodas de Samba"
+      },
+      "capitulos": [
+        {
+          "id": 1,
+          "titulo": "Primeiro Encontro",
+          "url": "/videos/teu_samba/episodio1.mp4",
+          "likes": 0,
+          "views": 0
+        }
+      ],
+      "likes": 0,
+      "views": 0,
+      "dataCriacao": "2024-10-10T00:00:00.000Z",
+      "dataAtualizacao": "2024-10-10T00:00:00.000Z"
+    }
+  ]
+}

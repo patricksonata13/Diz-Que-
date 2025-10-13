@@ -1,0 +1,176 @@
+{
+  "proximoId": 10,
+  "videos": [
+    {
+      "id": 1,
+      "titulo": "O Matuto",
+      "descricao": "Homem da Cidade de Deus navega entre o crime e a família",
+      "capa": "/images/capas/capa1.jpg",
+      "categoria": "Drama Urbano",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 2,
+      "titulo": "Costa Verde", 
+      "descricao": "Grupos protetores lutam por segredos ancestrais",
+      "capa": "/images/capas/capa2.jpg",
+      "categoria": "Aventura Mística",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 3,
+      "titulo": "Viaduto",
+      "descricao": "5 amigos viajam no tempo para Madureira do período escravidão",
+      "capa": "/images/capas/capa3.jpg",
+      "categoria": "Ficção Histórica",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 4,
+      "titulo": "Varre Sai",
+      "descricao": "A história da criação do distrito de Varre Sai",
+      "capa": "/images/capas/capa4.jpg",
+      "categoria": "Drama Social",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 5, 
+      "titulo": "Um Verão em Arraial",
+      "descricao": "Jovens vivem romances e confusões no verão",
+      "capa": "/images/capas/capa5.jpg",
+      "categoria": "Comédia Romântica",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 6,
+      "titulo": "Teu Samba",
+      "descricao": "Casais se conhecem em rodas de samba pelo Rio",
+      "capa": "/images/capas/capa6.jpg",
+      "categoria": "Romance Musical", 
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 7,
+      "titulo": "Letra 7",
+      "descricao": "Mulheres se envolvem em golpes no submundo da cidade",
+      "capa": "/images/capas/capa7.jpg",
+      "categoria": "Suspense",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 8,
+      "titulo": "Ô Postinho",
+      "descricao": "Comédia em posto de saúde de favela",
+      "capa": "/images/capas/capa8.jpg",
+      "categoria": "Comédia",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 9,
+      "titulo": "Império de Pedra",
+      "descricao": "Homem do Vidigal constrói império e lida com conflitos familiares",
+      "capa": "/images/capas/capa9.jpg",
+      "categoria": "Drama Familiar",
+      "likes": 0,
+      "views": 0
+    }
+  ]
+}
+cp data/videos.json data/videos_backup.json
+nano data/videos.json
+
+{
+  "videos": [
+    {
+      "id": 1,
+      "titulo": "O Matuto",
+      "descricao": "Drama urbano na favela",
+      "capa": "/images/capas/capa1.jpg",
+      "categoria": "Drama",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 2,
+      "titulo": "Costa Verde",
+      "descricao": "Aventura mística na Costa Verde",
+      "capa": "/images/capas/capa2.jpg",
+      "categoria": "Aventura",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 3,
+      "titulo": "Viaduto",
+      "descricao": "Conflitos e amores embaixo do viaduto",
+      "capa": "/images/capas/capa3.jpg",
+      "categoria": "Romance",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 4,
+      "titulo": "Varre Sai",
+      "descricao": "Comédia popular em Arraial do Cabo",
+      "capa": "/images/capas/capa4.jpg",
+      "categoria": "Comédia",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 5,
+      "titulo": "Um Verão em Arraial",
+      "descricao": "Drama familiar na praia",
+      "capa": "/images/capas/capa5.jpg",
+      "categoria": "Drama",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 6,
+      "titulo": "Teu Samba",
+      "descricao": "A música conecta a comunidade",
+      "capa": "/images/capas/capa6.jpg",
+      "categoria": "Música",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 7,
+      "titulo": "Letra 7",
+      "descricao": "Mistério e drama urbano",
+      "capa": "/images/capas/capa7.jpg",
+      "categoria": "Drama",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 8,
+      "titulo": "Ô Postinho",
+      "descricao": "Comédia em posto de saúde de favela",
+      "capa": "/images/capas/capa8.jpg",
+      "categoria": "Comédia",
+      "likes": 0,
+      "views": 0
+    },
+    {
+      "id": 9,
+      "titulo": "Império de Pedra",
+      "descricao": "Homem do Vidigal constrói império e lida com conflitos 
+familiares",
+      "capa": "/images/capas/capa9.jpg",
+      "categoria": "Drama Familiar",
+      "likes": 0,
+      "views": 0
+    }
+  ]
+}
+

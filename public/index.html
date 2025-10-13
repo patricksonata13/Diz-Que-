@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diz-Que RealShots</title>
+<style>
+/* =====================
+   Reset e básico
+===================== */
+* { margin:0; padding:0; box-sizing:border-box; }
+body, html { height:100%; font-family:Arial,sans-serif; background:#000; color:#fff; overflow:hidden; }
+
+/* =====================
+   Container principal
+===================== */
+.video-container { position: relative; width:100%; height:100vh; overflow:hidden; }
+video { width:100%; height:100%; object-fit:cover; transition:opacity 0.3s ease; }
+
+/* =====================
+   Informações do vídeo
+===================== */
+.video-info {
+    position:absolute; bottom:120px; left:15px;
+    text-shadow: 0 0 10px #000; max-width:70%;
+}
+.video-info h2 { font-size:1.5rem; margin-bottom:0.2rem; }
+.video-info p { font-size:1rem; margin-bottom:0.3rem; }
+
+/* =====================
+   Botões de ação
+===================== */
+.video-actions {
+    position:absolute; right:15px; bottom:120px;
+    display:flex; flex-direction:column; align-items:center; gap:20px;
+}
+.video-actions button {
+    background: rgba(255,255,255,0.2); border:none;
+    color:#fff; font-size:1.5rem; padding:15px; border-radius:50%;
+    cursor:pointer; position:relative; overflow:hidden;
+}
+
+/* Coração animado */
+.like-animation {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
+    font-size:4rem; color:#ff2d55; pointer-events:none;
+    animation: pop 0.5s forwards;
+}
+@keyframes pop {
+    0% { transform:translate(-50%,-50%) scale(0); opacity:1; }
+    50% { transform:translate(-50%,-50%) scale(1.5); }
+    100% { transform:translate(-50%,-50%) scale(1); opacity:0; }
+}
+
+/* =====================
+   Overlays
+===================== */
+.overlay {
+    position:absolute; bottom:0; left:0; width:100%; max-height:50%; 
+    background:rgba(0,0,0,0.7); overflow-y:auto; padding:15px;
+    display:none; flex-direction:column; gap:10px; border-top-left-radius:15px; border-top-right-radius:15px;
+}
+.overlay.active { display:flex; }
+
+/* Formulário */
+#formNovela input, #formNovela textarea, #formNovela button {
+    width:100%; margin-bottom:8px; padding:10px; border-radius:8px; border:none; font-size:1rem;
+}
+#formNovela button { background:#ff2d55; color:#fff; cursor:pointer; }
+
+/* Lista de novelinhas */
+.novela-card {
+    background:rgba(255,255,255,0.1); padding:10px; border-radius:8px; cursor:pointer; transition:0.2s;
+}
+.novela-card:hover { background:rgba(255,255,255,0.2); }
+
+/* Botões para abrir overlays */
+.overlay-btns {
+    position:absolute; top:15px; left:15px; display:flex; gap:10px;
+}
+.overlay-btns button {
+    background: rgba(255,255,255,0.2); border:none; color:#fff; padding:10px 15px; border-radius:8px; cursor:pointer;
+}
+
+/* =====================
+   Transição de vídeo
+===================== */
+video.fade-out { opacity:0; }
+video.fade-in { opacity:1; }
+</style>
+</head>
+<body>
+
+<div class="video-container">
+    <video id="videoPlayer" autoplay muted></video>
+
+    <div class="video-info">
+        <h2 id="titulo">Título do episódio</h2>
+        <p id="descricao">Descrição do episódio...</p>
+        <p>❤️ <span id="likes">0</span> | 👁️ <span id="views">0</span></p>
+    </div>
+
+    <div class="video-actions">
+        <button id="likeBtn">❤️</button>
+        <button id="nextBtn">➡️</button>
+    </div>
+
+    <div class="overlay-btns">
+        <button id="abrirForm">➕ Nova Novelinha</button>
+        <button id="abrirLista">📚 Novelinhas</button>
+    </div>
+
+    <!-- Overlay formulário -->
+    <div class="overlay" id="overlayForm">
+        <h3>Publicar Nova Novelinha</h3>
+        <form id="formNovela">
+            <input type="text" id="tituloForm" placeholder="Título da novelinha" required>
+            <textarea id="conteudoForm" placeholder="Conteúdo..." rows="3" required></textarea>
+            <input type="text" id="autorForm" placeholder="Seu nome (opcional)">
+            <button type="submit">Publicar</button>
+        </form>
+    </div>
+
+    <!-- Overlay lista de novelinhas -->
+    <div class="overlay" id="overlayLista">
+        <h3>Novelinhas Recentes</h3>
+        <div id="listaNovelas"></div>
+    </div>
+</div>
+
+<script>
+// =====================
+// Variáveis principais
+// =====================
+const videoPlayer = document.getElementById('videoPlayer');
+const titulo = document.getElementById('titulo');
+const descricao = document.getElementById('descricao');
+const likes = document.getElementById('likes');
+const views = document.getElementById('views');
+const likeBtn = document.getElementById('likeBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+const overlayForm = document.getElementById('overlayForm');
+const overlayLista = document.getElementById('overlayLista');
+const abrirForm = document.getElementById('abrirForm');
+const abrirLista = document.getElementById('abrirLista');
+const listaNovelas = document.getElementById('listaNovelas');
+
+let videos = [];
+let index = 0;
+
+// =====================
+// Carregar vídeos
+// =====================
+async function carregarVideos() {
+    try {
+        const res = await fetch('/api/videos');
+        videos = await res.json();
+        mostrarVideo();
+    } catch(e){ console.error(e); }
+}
+carregarVideos();
+
+// =====================
+// Mostrar vídeo atual
+// =====================
+function mostrarVideo() {
+    if(videos.length === 0) return;
+    const video = videos[index];
+
+    videoPlayer.classList.add('fade-out');
+    setTimeout(() => {
+        videoPlayer.src = video.url;
+        titulo.textContent = video.titulo;
+        descricao.textContent = video.descricao;
+        likes.textContent = video.likes;
+        views.textContent = video.views;
+        videoPlayer.classList.remove('fade-out');
+        videoPlayer.classList.add('fade-in');
+        setTimeout(()=> videoPlayer.classList.remove('fade-in'),300);
+    }, 200);
+}
+
+// =====================
+// Próximo vídeo
+// =====================
+function proximoVideo() { index=(index+1)%videos.length; mostrarVideo(); }
+nextBtn.addEventListener('click', proximoVideo);
+
+// =====================
+// Swipe vertical
+// =====================
+let startY=0;
+videoPlayer.addEventListener('touchstart', e=>{ startY = e.touches[0].clientY; });
+videoPlayer.addEventListener('touchend', e=>{
+    const endY = e.changedTouches[0].clientY;
+    if(startY-endY>50) proximoVideo();
+    if(endY-startY>50) { index=(index-1+videos.length)%videos.length; mostrarVideo(); }
+});
+
+// =====================
+// Curtir vídeo - single ou double tap
+// =====================
+let lastTap=0;
+videoPlayer.addEventListener('touchend', e=>{
+    const now = Date.now();
+    if(now - lastTap < 300){
+        // double tap
+        curtirVideo();
+    }
+    lastTap = now;
+});
+
+likeBtn.addEventListener('click', curtirVideo);
+
+async function curtirVideo(){
+    const video = videos[index];
+    const heart = document.createElement('div');
+    heart.classList.add('like-animation'); heart.textContent='❤️';
+    videoPlayer.parentElement.appendChild(heart); setTimeout(()=>heart.remove(),500);
+    try {
+        const res = await fetch(`/api/like/${video.id}`,{method:'POST'});
+        const updated = await res.json();
+        likes.textContent = updated.likes; videos[index].likes = updated.likes;
+    } catch(e){ console.error(e); }
+}
+
+// =====================
+// Abrir overlays
+// =====================
+abrirForm.addEventListener('click', ()=>{ overlayForm.classList.toggle('active'); overlayLista.classList.remove('active'); });
+abrirLista.addEventListener('click', ()=>{ overlayLista.classList.toggle('active'); overlayForm.classList.remove('active'); });
+
+// =====================
+// Carregar lista de novelinhas
+// =====================
+async function carregarNovelas() {
+    try {
+        const res = await fetch('/api/novelas');
+        const novelas = await res.json();
+        listaNovelas.innerHTML = novelas.map(n=>{
+            return `<div class="novela-card" onclick="alert('${n.titulo}\\n${n.conteudo}')">
+                <strong>${n.titulo}</strong> - ${n.autor}
+            </div>`;
+        }).join('');
+    } catch(e){ console.error(e); }
+}
+carregarNovelas();
+
+// =====================
+// Publicar nova novelinha
+// =====================
+document.getElementById('formNovela').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const novaNovela = {
+        titulo: document.getElementById('tituloForm').value,
+        conteudo: document.getElementById('conteudoForm').value,
+        autor: document.getElementById('autorForm').value || 'Anônimo'
+    };
+    try {
+        const res = await fetch('/api/novelas',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(novaNovela)});
+        if(res.ok){
+            document.getElementById('formNovela').reset();
+            overlayForm.classList.remove('active');
+            carregarNovelas();
+            alert('Novelinha publicada! 🎉');
+        }
+    } catch(e){ console.error(e); }
+});
+</script>
+
+</body>
+</html>
+
